@@ -1,52 +1,25 @@
-<html ng-app="famban">
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="css/bootswatch.min.css" media="all">
-  <link rel="stylesheet" href="css/famban.css" media="all">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sistema de Cadastro de Grupos - APS</title>
+	<link rel="stylesheet" href="static/css/bootswatch.min.css">
+	<link href="static/css/signin.css" rel="stylesheet">
+	<script src="static/js/bootstrap.min.js" /></script>
 </head>
-<body style="padding-top: 80px; background-color: #F0F0F0">
-
-<nav class="navbar navbar-default navbar-fixed-top" style="height: 60px">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-th-list"></span> Famban</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="#/boards">Quadros <span class="sr-only">(current)</span></a></li>
-        <!--<li><a href="#/boards/1">Grupos</a></li>-->
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Opções <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Perfil</a></li>
-            <li><a href="#">Sair</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
+<body>
+  <div class="container">
+    <form class="form-signin" action="j_spring_security_check" method="POST">
+      <header>
+        <h1>Famban</h1>
+      </header>
+      <h2 class="form-signin-heading">Efetue o login</h2>
+      <input type="text" name='j_username' class="form-control" placeholder="Usuário">
+      <input type="password" name='j_password' class="form-control" placeholder="Senha">
+      <button class="btn btn-lg btn-primary btn-block" style="background-color: #060; border-color: #060" type="submit">Entrar</button>
+    </form>
   </div>
-</nav>
-<div ng-view></div>
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/angular.min.js"></script>
-<script src="js/angular-route.min.js"></script>
-<script src="js/app/app.js"></script>
-<script src="js/ui-bootstrap-tpls-0.14.3.min.js"></script>
-<script src="js/directives/draggable.js"></script>
-<script src="js/directives/droppable.js"></script>
-<script src="js/controllers/boardController.js"></script>
-<script src="js/controllers/cardController.js"></script>
-<script src="js/route/routes.js"></script>
 </body>
 </html>

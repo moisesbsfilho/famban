@@ -1,0 +1,36 @@
+.over {
+      background-color: #CDCDCD;
+    }
+    
+    [draggable] {
+      -moz-user-select: none;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      user-select: none;
+      /* Required to make elements draggable in old WebKit */
+      -khtml-user-drag: element;
+      -webkit-user-drag: element;
+    }
+
+    .panel-height{
+      height: 700px;
+    }
+
+    .panel-background{
+      background-color: #F6F8F9
+    }
+
+    .header-welcome{
+      margin: 5px 0 5px;
+    }
+
+    .comment{
+      background-color: #E0E0E0;
+      border-radius: 10px;
+    }
+
+    .board-alert{
+      height: 90px;
+      background-color: #2C3E50;
+      border-color: #1B2733;
+    }
