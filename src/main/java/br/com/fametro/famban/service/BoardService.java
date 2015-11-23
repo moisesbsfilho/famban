@@ -11,7 +11,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+
 import br.com.fametro.famban.model.Board;
+import br.com.fametro.famban.model.User;
 import br.com.fametro.famban.repository.BoardRepository;
 
 @Path("/board")
@@ -31,7 +34,8 @@ public class BoardService {
 	
 	@GET
 	public Response findAll() {
-		return Response.ok(boardRepository.findAll()).build();
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		return Response.ok(boardRepository.findAllByUser(user.getId())).build();
 	}
 	
 	@GET

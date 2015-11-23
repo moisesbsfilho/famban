@@ -7,6 +7,8 @@
 	<persistence-unit name="famban-unit" transaction-type="JTA">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<jta-data-source>java:jboss/datasources/FambanDS</jta-data-source>
+		<class>br.com.fametro.famban.model.User</class>
+		<class>br.com.fametro.famban.model.Role</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/famban"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
