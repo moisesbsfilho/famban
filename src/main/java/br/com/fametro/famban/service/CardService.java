@@ -32,6 +32,14 @@ public class CardService {
 	public Response findAll() {
 		return Response.ok(cardRepository.findAll()).build();
 	}
+	
+	@GET
+	@Path("/{cardId}")
+	public Response remove(@PathParam("boardId") Long boardId, @PathParam("cardId") Long cardId) {
+		Card card = cardRepository.find(cardId);
+		cardRepository.delete(card);
+		return Response.ok().build();
+	}
 
 	@POST
 	public Response save(Card card, @PathParam("boardId") Long boardId) {
@@ -39,4 +47,5 @@ public class CardService {
 		board.getCards().add(card);
 		return Response.ok(boardRepository.update(board)).build();
 	}
+	
 }

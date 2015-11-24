@@ -11,11 +11,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
+@XmlRootElement
 @Table(name = "users")
 @SequenceGenerator(name = "USER_SEQ", sequenceName = "USER_SEQ")
 public class User implements UserDetails{

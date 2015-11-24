@@ -1,5 +1,6 @@
 package br.com.fametro.famban.model;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -27,9 +28,9 @@ public class Board {
 	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "board_id")
 	private Set<Card> cards;
-	
-	@ManyToMany(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-	@JoinTable(name="users_boards", joinColumns=@JoinColumn(name="board_id"), inverseJoinColumns=@JoinColumn(name="user_id"))
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "users_boards", joinColumns = @JoinColumn(name = "board_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<User> users;
 
 	public Long getId() {
@@ -56,6 +57,16 @@ public class Board {
 
 	public void setCards(Set<Card> cards) {
 		this.cards = cards;
+	}
+
+	public Set<User> getUsers() {
+		if(users == null)
+			users = new HashSet<User>();
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 }

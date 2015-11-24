@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="famban">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sistema de Cadastro de Grupos - APS</title>
+	<link rel="stylesheet" href="static/css/bootswatch.min.css">
+	<link href="static/css/signin.css" rel="stylesheet">
+</head>
+<body ng-controller="UserCtrl">
+  <div class="container">
+    <form class="form-signin">
+      <header>
+        <h1>Famban</h1>
+      </header>
+      <h2 class="form-signin-heading">Cadastre-se</h2>
+      <label>Insira seu e-mail</label>
+      <input type="text" ng-model='user.username' class="form-control" placeholder="E-mail">
+      <label>Insira sua senha</label>
+      <input type="password" ng-model='user.password' class="form-control" placeholder="Senha">
+      <button class="btn btn-lg btn-primary btn-block" style="background-color: #060; border-color: #060" type="button" ng-click="submit()">Cadastrar</button>
+    </form>
+  </div>
+<script src="/famban/static/js/jquery.min.js"></script>
+<script src="static/js/bootstrap.min.js" /></script>
+<script src="/famban/static/js/angular.min.js"></script>
+<script src="/famban/static/js/controllers/userController.js"></script>
+</body>
+</html>

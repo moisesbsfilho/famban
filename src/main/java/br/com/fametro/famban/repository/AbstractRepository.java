@@ -34,6 +34,10 @@ public abstract class AbstractRepository<T> {
 		return entityManager.merge(t);
 	}
 	
+	public void delete(T t){
+		entityManager.remove(t);
+	}
+	
 	public Class<T> getClazz(){
 		return this.clazz;
 	}

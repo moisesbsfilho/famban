@@ -11,10 +11,11 @@ app.controller('CardCtrl', function($scope, $q, $uibModal, $log, $http, $routePa
       $scope.animationsEnabled = !$scope.animationsEnabled;
     };
 
-    $scope.drop = function(id, target){
-      var element = $scope.items[id];
-      //Chamada rest para alteração do card
-      element.status = target;
+    $scope.drop = function(index){
+      var element = $scope.items[index];
+      $http.get('services/'+$routeParams.boardId+'/card/'+element.id).success(function(){
+    	  $scope.items.splice(index, 1);
+      });
     };
 
     $scope.open = function (card) {

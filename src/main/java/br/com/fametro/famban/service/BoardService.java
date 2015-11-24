@@ -26,15 +26,17 @@ public class BoardService {
 	@Inject
 	private BoardRepository boardRepository;
 	
+	User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	
 	@POST
 	public Response save(Board board) {
-		boardRepository.save(board);
+		board.getUsers().add(user);
+		boardRepository.update(board);
 		return Response.ok().build();
 	}
 	
 	@GET
 	public Response findAll() {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		return Response.ok(boardRepository.findAllByUser(user.getId())).build();
 	}
 	
