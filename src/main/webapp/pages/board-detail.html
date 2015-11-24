@@ -27,12 +27,17 @@
 									<div class="alert alert-dismissible alert-success"
 										ng-if="item.status == 'todo'" draggable id="{{$index}}"
 										data-model="20">
-										<p>{{item.title}}</p>
+										<p>
+											<strong>#{{item.id}} - {{item.title}}</strong>
+										</p>
+										<p>
+											<strong>Atividade: </strong>{{item.description}}
+										</p>
 										<p>
 											<a href="#/boards/{{board.id}}" ng-click="open(item)"
 												style="color: #fff"><i
 												class="glyphicon glyphicon-info-sign"></i></a> <a
-												href="#/boards/{{board.id}}" ng-click="drop($index)"
+												href="#/boards/{{board.id}}" ng-click="remove($index)"
 												style="color: #fff"><span
 												class="glyphicon glyphicon-remove-sign"></span></a>
 										</p>
@@ -53,12 +58,19 @@
 									<div class="alert alert-dismissible alert-success"
 										ng-if="item.status == 'doing'" draggable id="{{$index}}"
 										data-model="20">
-										<p>{{item.title}}</p>
+										<p>
+											<strong>#{{item.id}} - {{item.title}}</strong>
+										</p>
+										<p>
+											<strong>Atividade: </strong>{{item.description}}
+										</p>
 										<p>
 											<a href="#/boards/{{board.id}}" ng-click="open(item)"
 												style="color: #fff"><i
-												class="glyphicon glyphicon-info-sign"></i></a> <span
-												class="glyphicon glyphicon-remove-sign"></span>
+												class="glyphicon glyphicon-info-sign"></i></a> <a
+												href="#/boards/{{board.id}}" ng-click="remove($index)"
+												style="color: #fff"><span
+												class="glyphicon glyphicon-remove-sign"></span></a>
 										</p>
 									</div>
 								</div>
@@ -77,12 +89,19 @@
 									<div class="alert alert-dismissible alert-success"
 										ng-if="item.status == 'done'" draggable id="{{$index}}"
 										data-model="20">
-										<p>{{item.title}}</p>
+										<p>
+											<strong>#{{item.id}} - {{item.title}}</strong>
+										</p>
+										<p>
+											<strong>Atividade: </strong>{{item.description}}
+										</p>
 										<p>
 											<a href="#/boards/{{board.id}}" ng-click="open(item)"
 												style="color: #fff"><i
-												class="glyphicon glyphicon-info-sign"></i></a> <span
-												class="glyphicon glyphicon-remove-sign"></span>
+												class="glyphicon glyphicon-info-sign"></i></a> <a
+												href="#/boards/{{board.id}}" ng-click="remove($index)"
+												style="color: #fff"><span
+												class="glyphicon glyphicon-remove-sign"></span></a>
 										</p>
 									</div>
 								</div>
@@ -93,69 +112,38 @@
 			</div>
 		</div>
 		<div class="col-lg-2">
-			<div class="page-header">
-				<h4>
-					<strong>Comentários</strong>
-				</h4>
-			</div>
+			<div ng-controller="UserCtrl">
+				<label>Adicionar Usuarios:</label>
+				<input type="text" ng-model="userSelected"
+					placeholder="Locations loaded via $http"
+					uib-typeahead="user for user in getLocation($viewValue)"
+					typeahead-loading="loadingLocations"
+					typeahead-no-results="noResults" class="form-control"> <i
+					ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+				<div ng-show="noResults">
+					<i class="glyphicon glyphicon-remove"></i> N�o encontrado
+				</div>
+				<button class="btn btn-danger btn-xs" ng-click="submit()">
+					Adicionar Usuario
+				</button><br/><br/>
+			
 			<!--Deixar dinâmico com o angular-->
-			<ul class="media-list">
-				<li class="media comment">
-					<div class="media-left">
-						<img src="/famban/static/img/img1.jpg" height="30px" width="30px"
-							class="media-object">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Moisés disse:</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.</p>
-					</div>
-				</li>
-				<li class="media comment">
-					<div class="media-left">
-						<img src="/famban/static/img/img2.jpg" height="30px" width="30px"
-							class="media-object">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Anderson disse:</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.</p>
-					</div>
-				</li>
-				<li class="media comment">
-					<div class="media-left">
-						<img src="/famban/static/img/img6.jpg" height="30px" width="30px"
-							class="media-object">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Nathália disse:</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.</p>
-					</div>
-				</li>
-				<li class="media comment">
-					<div class="media-left">
-						<img src="/famban/static/img/img4.jpg" height="30px" width="30px"
-							class="media-object">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Maiara disse:</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.</p>
-					</div>
-				</li>
-				<li class="media comment">
-					<div class="media-left">
-						<img src="/famban/static/img/img5.jpg" height="30px" width="30px"
-							class="media-object">
-					</div>
-					<div class="media-body">
-						<h4 class="media-heading">Lucas disse:</h4>
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.</p>
-					</div>
-				</li>
-			</ul>
+				<label>Usuarios do Quadro:</label>
+				<table class="table table-striped table-bordered table-condensed">
+					<tbody>
+						<tr ng-repeat="user in users">
+							<td><span class="glyphicon glyphicon-eye-open"></span> {{user.username}}</td>
+						</tr>
+					</tbody>
+				</table>
+<!-- 				<ul class="media-list"> -->
+<!-- 					<li class="media comment" ng-repeat="user in users"> -->
+<!-- 						<div class="media-body"> -->
+<!-- 							<h6 class="media-heading">&nbsp;&nbsp;<strong>{{user.username}}</strong></h6> -->
+<!-- 						</div> -->
+<!-- 					</li> -->
+<!-- 				</ul> -->
+			</div>
 			<!--End-->
 		</div>
 	</div>
@@ -163,7 +151,10 @@
 
 <script type="text/ng-template" id="myModalContent.html">
 <div class="modal-header">
-<h3 class="modal-title">Novo Card</h3>
+<h3 class="modal-title">
+Novo Card 
+<small><span class="label label-warning">{{card.status}}</span></small>
+</h3>
 </div>
 <div class="modal-body">
 <form role="form" class="ng-scope ng-pristine ng-valid">

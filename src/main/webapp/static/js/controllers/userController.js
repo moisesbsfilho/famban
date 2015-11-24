@@ -1,10 +1,22 @@
-var app = angular.module('famban', []);
-app.controller('UserCtrl', function($scope, $http) {
+app.controller('UserCtrl', function($scope, $http, $routeParams) {
 
-	$scope.submit = function() {
-		$http.post('pages/services/user', $scope.user).success(function(){
-	    	console.log("Ok");
-	    });
-	}
+	$http.get('services/board/' + $routeParams.boardId + '/user').success(function(data){
+		$scope.users = data;
+	});
+	
+	$scope.getLocation = function(val) {
+		return $http.get('services/user/' + val).then(function(response) {
+			return response.data.map(function(item) {
+				return item.username;
+			});
+		});
+	};
+	
+	$scope.submit = function(){
+		$http.get('services/board/' + $routeParams.boardId + '/user/' + $scope.userSelected).success(function(data){
+			$scope.users.push({username: $scope.userSelected});
+			$scope.userSelected = "";
+		});
+	};
 
 });
