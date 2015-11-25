@@ -25,7 +25,7 @@
 			login-processing-url="/j_spring_security_check" username-parameter="j_username"
 			password-parameter="j_password" />
 		<security:logout invalidate-session="true" 
-			logout-success-url="/index.html" delete-cookies="JSESSIONID" />
+			logout-success-url="/index.html" logout-url="/j_spring_security_logout" delete-cookies="JSESSIONID" />
 		<security:session-management>
 			<security:concurrency-control
 				error-if-maximum-exceeded="true" expired-url="/index.html"
