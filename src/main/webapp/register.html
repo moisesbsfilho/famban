@@ -10,21 +10,28 @@
 </head>
 <body ng-controller="SigninCtrl">
   <div class="container">
-    <form class="form-signin">
+    <form name="form" class="form-signin">
       <header>
         <h1>Famban</h1>
       </header>
       <h2 class="form-signin-heading">Cadastre-se</h2>
       <label>Insira seu e-mail</label>
-      <input type="text" ng-model='user.username' class="form-control" placeholder="E-mail">
+      <input name="username" type="text" required ng-model='user.username' class="form-control" placeholder="E-mail">
+      <div ng-messages="form.username.$error" ng-show="form.username.$touched">
+      	<p style="color: red;" ng-message="required">Um nome de usuário é necessário</p>
+      </div>
       <label>Insira sua senha</label>
-      <input type="password" ng-model='user.password' class="form-control" placeholder="Senha">
-      <button class="btn btn-lg btn-primary btn-block" style="background-color: #060; border-color: #060" type="button" ng-click="submit()">Cadastrar</button>
+      <input name="password" type="password" ng-minlength="6" ng-model='user.password' class="form-control" placeholder="Senha">
+      <div ng-messages="form.password.$error" ng-show="form.password.$touched">
+      	<p style="color: red;" ng-message="minlength">Esta senha é muito pequena</p>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" style="background-color: #060; border-color: #060" type="button" ng-disabled="form.$invalid" ng-click="submit()">Cadastrar</button>
     </form>
   </div>
 <script src="/famban/static/js/jquery.min.js"></script>
 <script src="static/js/bootstrap.min.js" /></script>
 <script src="/famban/static/js/angular.min.js"></script>
+<script src="/famban/static/js/angular-messages.min.js"></script>
 <script src="/famban/static/js/controllers/signinController.js"></script>
 </body>
 </html>

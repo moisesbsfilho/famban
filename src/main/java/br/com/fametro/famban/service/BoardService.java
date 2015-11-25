@@ -1,5 +1,7 @@
 package br.com.fametro.famban.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -35,13 +37,13 @@ public class BoardService {
 	@POST
 	public Response save(Board board) {
 		board.getUsers().add(userLogged);
-		boardRepository.update(board);
-		return Response.ok().build();
+		return Response.ok(boardRepository.update(board)).build();
 	}
 	
 	@GET
 	public Response findAll() {
-		return Response.ok(boardRepository.findAllByUser(userLogged.getId())).build();
+		List<Board> boards = boardRepository.findAllByUser(userLogged.getId());
+		return Response.ok(boards).build();
 	}
 	
 	@GET

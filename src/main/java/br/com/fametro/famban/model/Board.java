@@ -26,7 +26,7 @@ public class Board {
 
 	private String title;
 
-	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL)
+	@OneToMany(orphanRemoval = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "board_id")
 	private Set<Card> cards;
 
