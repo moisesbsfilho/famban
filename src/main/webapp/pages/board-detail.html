@@ -115,13 +115,13 @@
 			<div ng-controller="UserCtrl">
 				<label>Adicionar Usuarios:</label>
 				<input type="text" ng-model="userSelected"
-					placeholder="Locations loaded via $http"
+					placeholder="Insira o login"
 					uib-typeahead="user for user in getLocation($viewValue)"
 					typeahead-loading="loadingLocations"
 					typeahead-no-results="noResults" class="form-control"> <i
 					ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
 				<div ng-show="noResults">
-					<i class="glyphicon glyphicon-remove"></i> N�o encontrado
+					<i class="glyphicon glyphicon-remove"></i> Não encontrado
 				</div>
 				<button class="btn btn-danger btn-xs" ng-click="submit()">
 					Adicionar Usuario
@@ -136,13 +136,6 @@
 						</tr>
 					</tbody>
 				</table>
-<!-- 				<ul class="media-list"> -->
-<!-- 					<li class="media comment" ng-repeat="user in users"> -->
-<!-- 						<div class="media-body"> -->
-<!-- 							<h6 class="media-heading">&nbsp;&nbsp;<strong>{{user.username}}</strong></h6> -->
-<!-- 						</div> -->
-<!-- 					</li> -->
-<!-- 				</ul> -->
 			</div>
 			<!--End-->
 		</div>
@@ -157,21 +150,27 @@ Novo Card
 </h3>
 </div>
 <div class="modal-body">
-<form role="form" class="ng-scope ng-pristine ng-valid">
+<form name="form" class="ng-scope ng-pristine ng-valid">
 <input type="hidden"/>
 <div class="form-group">
-<label for="name">Nome</label>
-<input ng-model="card.title" ng-disabled="card.id" type="name" class="form-control">
+<label>Nome</label>
+<input name="cTitle" required ng-model="card.title" ng-disabled="card.id" type="name" class="form-control">
+<div ng-messages="form.cTitle.$error" ng-show="form.cTitle.$error.required && form.cTitle.$touched">
+  <p style="color: red;" ng-message="required">Este campo é obrigatório!</p>
+</div>
 </div>
 <div class="form-group">
 <label for="password">Informações</label>
-<textarea ng-model="card.description" ng-disabled="card.id" class="form-control" rows="3"></textarea>
+<textarea name="cDescription" required ng-model="card.description" ng-disabled="card.id" class="form-control" rows="3"></textarea>
+<div ng-messages="form.cDescription.$error" ng-show="form.cDescription.$error.required && form.cDescription.$touched">
+  <p style="color: red;" ng-message="required">Este campo é obrigatório!</p>
+</div>
 </div>
 </form>
 </div>
 <div class="modal-footer">
 <div ng-if="card.id == null">
-  <button class="btn btn-info" type="button" ng-click="save()">Salvar</button>
+  <button class="btn btn-info" type="button" ng-click="save()" ng-disabled="form.$invalid">Salvar</button>
   <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
 </div>
 <div ng-if="card.id != null">
