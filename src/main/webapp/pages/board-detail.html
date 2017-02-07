@@ -1,4 +1,4 @@
-<div style="background-color: #F0F0F0" ng-controller="CardCtrl">
+<div style="background-color: #F0F0F0">
 	<div class="container-fluid">
 		<div class="page-header header-welcome">
 			<h4>
@@ -17,15 +17,15 @@
 								<span class="glyphicon glyphicon glyphicon-flag"></span><strong>
 									A Fazer</strong>
 								<button class="btn btn-danger btn-xs pull-right"
-									ng-click="open()">
+									data-ng-click="vm.open()">
 									<span class="glyphicon glyphicon-plus"></span> Card
 								</button>
 							</div>
-							<div class="panel-body panel-height panel-background" droppable
+							<div class="panel-body panel-height panel-background" data-droppable
 								data-panel="todo">
-								<div ng-repeat="item in items">
+								<div data-ng-repeat="item in vm.items">
 									<div class="alert alert-dismissible alert-success"
-										ng-if="item.status == 'todo'" draggable id="{{$index}}"
+										data-ng-if="item.status == 'todo'" data-draggable id="{{$index}}"
 										data-model="20">
 										<p>
 											<strong>#{{item.id}} - {{item.title}}</strong>
@@ -34,10 +34,10 @@
 											<strong>Atividade: </strong>{{item.description}}
 										</p>
 										<p>
-											<a href="#/boards/{{board.id}}" ng-click="open(item)"
+											<a href="#/boards/{{vm.board.id}}" data-ng-click="vm.open(item)"
 												style="color: #fff"><i
 												class="glyphicon glyphicon-info-sign"></i></a> <a
-												href="#/boards/{{board.id}}" ng-click="remove($index)"
+												href="#/boards/{{vm.board.id}}" data-ng-click="vm.remove($index)"
 												style="color: #fff"><span
 												class="glyphicon glyphicon-remove-sign"></span></a>
 										</p>
@@ -52,11 +52,11 @@
 								<span class="glyphicon glyphicon glyphicon-flag"></span><strong>
 									Fazendo</strong>
 							</div>
-							<div class="panel-body panel-height panel-background" droppable
-								data-panel="doing" drop-complete="drop(id_banco, target)">
-								<div ng-repeat="item in items">
+							<div class="panel-body panel-height panel-background" data-droppable
+								data-panel="doing" data-drop-complete="vm.drop(id_banco, target)">
+								<div data-ng-repeat="item in vm.items">
 									<div class="alert alert-dismissible alert-success"
-										ng-if="item.status == 'doing'" draggable id="{{$index}}"
+										data-ng-if="item.status == 'doing'" data-draggable id="{{$index}}"
 										data-model="20">
 										<p>
 											<strong>#{{item.id}} - {{item.title}}</strong>
@@ -65,10 +65,10 @@
 											<strong>Atividade: </strong>{{item.description}}
 										</p>
 										<p>
-											<a href="#/boards/{{board.id}}" ng-click="open(item)"
+											<a href="#/boards/{{vm.board.id}}" data-ng-click="vm.open(item)"
 												style="color: #fff"><i
 												class="glyphicon glyphicon-info-sign"></i></a> <a
-												href="#/boards/{{board.id}}" ng-click="remove($index)"
+												href="#/boards/{{vm.board.id}}" data-ng-click="vm.remove($index)"
 												style="color: #fff"><span
 												class="glyphicon glyphicon-remove-sign"></span></a>
 										</p>
@@ -83,11 +83,11 @@
 								<span class="glyphicon glyphicon glyphicon-flag"></span><strong>
 									Feito</strong>
 							</div>
-							<div class="panel-body panel-height panel-background" droppable
-								data-panel="done" drop-complete="drop(id_banco, target)">
-								<div ng-repeat="item in items">
+							<div class="panel-body panel-height panel-background" data-droppable
+								data-panel="done" data-drop-complete="vm.drop(id_banco, target)">
+								<div data-ng-repeat="item in vm.items">
 									<div class="alert alert-dismissible alert-success"
-										ng-if="item.status == 'done'" draggable id="{{$index}}"
+										data-ng-if="item.status == 'done'" data-draggable id="{{$index}}"
 										data-model="20">
 										<p>
 											<strong>#{{item.id}} - {{item.title}}</strong>
@@ -96,10 +96,10 @@
 											<strong>Atividade: </strong>{{item.description}}
 										</p>
 										<p>
-											<a href="#/boards/{{board.id}}" ng-click="open(item)"
+											<a href="#/boards/{{vm.board.id}}" data-ng-click="vm.open(item)"
 												style="color: #fff"><i
 												class="glyphicon glyphicon-info-sign"></i></a> <a
-												href="#/boards/{{board.id}}" ng-click="remove($index)"
+												href="#/boards/{{vm.board.id}}" data-ng-click="vm.remove($index)"
 												style="color: #fff"><span
 												class="glyphicon glyphicon-remove-sign"></span></a>
 										</p>
@@ -112,18 +112,17 @@
 			</div>
 		</div>
 		<div class="col-lg-2">
-			<div ng-controller="UserCtrl">
 				<label>Adicionar Usuarios:</label>
-				<input type="text" ng-model="userSelected"
+				<input type="text" data-ng-model="vm.userSelected"
 					placeholder="Insira o login"
-					uib-typeahead="user for user in getLocation($viewValue)"
-					typeahead-loading="loadingLocations"
-					typeahead-no-results="noResults" class="form-control"> <i
-					ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
-				<div ng-show="noResults">
-					<i class="glyphicon glyphicon-remove"></i> NÃ£o encontrado
+					data-uib-typeahead="user for user in vm.getLocation($viewValue)"
+					data-typeahead-loading="vm.loadingLocations"
+					data-typeahead-no-results="noResults" class="form-control"> <i
+					data-ng-show="vm.loadingLocations" class="glyphicon glyphicon-refresh"></i>
+				<div data-ng-show="noResults">
+					<i class="glyphicon glyphicon-remove"></i> Não encontrado
 				</div>
-				<button class="btn btn-danger btn-xs" ng-click="submit()">
+				<button class="btn btn-danger btn-xs" data-ng-click="vm.submit()">
 					Adicionar Usuario
 				</button><br/><br/>
 			
@@ -131,12 +130,11 @@
 				<label>Usuarios do Quadro:</label>
 				<table class="table table-striped table-bordered table-condensed">
 					<tbody>
-						<tr ng-repeat="user in users">
+						<tr data-ng-repeat="user in vm.users">
 							<td><span class="glyphicon glyphicon-eye-open"></span> {{user.username}}</td>
 						</tr>
 					</tbody>
 				</table>
-			</div>
 			<!--End-->
 		</div>
 	</div>
@@ -146,7 +144,7 @@
 <div class="modal-header">
 <h3 class="modal-title">
 Novo Card 
-<small><span class="label label-warning">{{card.status}}</span></small>
+<small><span class="label label-warning">{{vm.card.status}}</span></small>
 </h3>
 </div>
 <div class="modal-body">
@@ -154,27 +152,27 @@ Novo Card
 <input type="hidden"/>
 <div class="form-group">
 <label>Nome</label>
-<input name="cTitle" required ng-model="card.title" ng-disabled="card.id" type="name" class="form-control">
-<div ng-messages="form.cTitle.$error" ng-show="form.cTitle.$error.required && form.cTitle.$touched">
-  <p style="color: red;" ng-message="required">Este campo Ã© obrigatÃ³rio!</p>
+<input name="cTitle" required data-ng-model="vm.card.title" data-ng-disabled="vm.card.id" type="name" class="form-control">
+<div data-ng-messages="form.cTitle.$error" data-ng-show="form.cTitle.$error.required && form.cTitle.$touched">
+  <p style="color: red;" ng-message="required">Este campo é obrigatório!</p>
 </div>
 </div>
 <div class="form-group">
-<label for="password">InformaÃ§Ãµes</label>
-<textarea name="cDescription" required ng-model="card.description" ng-disabled="card.id" class="form-control" rows="3"></textarea>
-<div ng-messages="form.cDescription.$error" ng-show="form.cDescription.$error.required && form.cDescription.$touched">
-  <p style="color: red;" ng-message="required">Este campo Ã© obrigatÃ³rio!</p>
+<label for="password">Informações</label>
+<textarea name="cDescription" required data-ng-model="vm.card.description" data-ng-disabled="vm.card.id" class="form-control" rows="3"></textarea>
+<div data-ng-messages="form.cDescription.$error" data-ng-show="form.cDescription.$error.required && form.cDescription.$touched">
+  <p style="color: red;" data-ng-message="required">Este campo é obrigatório!</p>
 </div>
 </div>
 </form>
 </div>
 <div class="modal-footer">
-<div ng-if="card.id == null">
-  <button class="btn btn-info" type="button" ng-click="save()" ng-disabled="form.$invalid">Salvar</button>
-  <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
+<div data-ng-if="vm.card.id == null">
+  <button class="btn btn-info" type="button" data-ng-click="vm.save()" data-ng-disabled="form.$invalid">Salvar</button>
+  <button class="btn btn-danger" type="button" data-ng-click="vm.cancel()">Cancel</button>
 </div>
-<div ng-if="card.id != null">
-  <button class="btn btn-info" type="button" ng-click="ok()">Ok</button>
+<div data-ng-if="vm.card.id != null">
+  <button class="btn btn-info" type="button" data-ng-click="vm.ok()">Ok</button>
 </div>
 </div>
 </script>

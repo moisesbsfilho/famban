@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="famban">
+<html data-ng-app="famban">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
 	<link rel="stylesheet" href="static/css/bootswatch.min.css">
 	<link href="static/css/signin.css" rel="stylesheet">
 </head>
-<body ng-controller="SigninCtrl">
+<body>
   <div class="container">
     <form name="form" class="form-signin">
       <header>
@@ -16,23 +16,25 @@
       </header>
       <h2 class="form-signin-heading">Cadastre-se</h2>
       <label>Insira seu e-mail</label>
-      <input name="username" type="text" required ng-model='user.username' class="form-control" placeholder="E-mail">
-      <div ng-messages="form.username.$error" ng-show="form.username.$error.required && form.username.$touched">
-      	<p style="color: red;" ng-message="required">- Um nome de usuário é necessário</p>
+      <input name="username" type="text" required data-ng-model="vm.user.username" class="form-control" placeholder="E-mail">
+      <div data-ng-messages="form.username.$error" data-ng-show="form.username.$error.required && form.username.$touched">
+      	<p style="color: red;" data-ng-message="required">- Um nome de usuário é necessário</p>
       </div>
       <label>Insira sua senha</label>
-      <input name="password" type="password" ng-minlength="6" required ng-model='user.password' class="form-control" placeholder="Senha">
-      <div ng-messages="form.password.$error" ng-show="(form.password.$error.minlength || form.password.$error.required) && form.password.$touched">
-      	<p style="color: red;" ng-message="minlength">- Senha pequena! Mínimo 6 caracteres.</p>
-      	<p style="color: red;" ng-message="required">- Uma senha é necessária</p>
+      <input name="password" type="password" data-ng-minlength="6" required data-ng-model="vm.user.password" class="form-control" placeholder="Senha">
+      <div data-ng-messages="form.password.$error" data-ng-show="(form.password.$error.minlength || form.password.$error.required) && form.password.$touched">
+      	<p style="color: red;" data-ng-message="minlength">- Senha pequena! Mínimo 6 caracteres.</p>
+      	<p style="color: red;" data-ng-message="required">- Uma senha é necessária</p>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" style="background-color: #060; border-color: #060" type="button" ng-disabled="form.$invalid" ng-click="submit()">Cadastrar</button>
+      <button class="btn btn-lg btn-primary btn-block" style="background-color: #060; border-color: #060" type="button" data-ng-disabled="form.$invalid" data-ng-click="vm.submit()">Cadastrar</button>
     </form>
   </div>
 <script src="/famban/static/js/jquery.min.js"></script>
 <script src="static/js/bootstrap.min.js" /></script>
 <script src="/famban/static/js/angular.min.js"></script>
 <script src="/famban/static/js/angular-messages.min.js"></script>
-<script src="/famban/static/js/controllers/signinController.js"></script>
+<script src="/famban/static/js/app/app.module.js"></script>
+<script src="/famban/static/js/app/signin.module.js"></script>
+<script src="/famban/static/js/controllers/signin.controller.js"></script>
 </body>
 </html>

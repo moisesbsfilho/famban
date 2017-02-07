@@ -1,4 +1,4 @@
-<html ng-app="famban">
+<html data-ng-app="famban">
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="/famban/static/css/bootswatch.min.css" media="all">
@@ -21,7 +21,6 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="#/boards">Quadros <span class="sr-only">(current)</span></a></li>
-        <!--<li><a href="#/boards/1">Grupos</a></li>-->
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
@@ -34,20 +33,23 @@
     </div>
   </div>
 </nav>
-<div ng-view></div>
+<div data-ng-view></div>
 <script src="/famban/static/js/jquery.min.js"></script>
 <script src="/famban/static/js/jquery-ui.min.js"></script>
 <script src="/famban/static/js/bootstrap.min.js"></script>
 <script src="/famban/static/js/angular.min.js"></script>
 <script src="/famban/static/js/angular-route.min.js"></script>
 <script src="/famban/static/js/angular-messages.min.js"></script>
-<script src="/famban/static/js/app/app.js"></script>
+<script src="/famban/static/js/app/app.module.js"></script>
+<script src="/famban/static/js/app/card.module.js"></script>
+<script src="/famban/static/js/app/board.module.js"></script>
+<script src="/famban/static/js/app/user.module.js"></script>
 <script src="/famban/static/js/ui-bootstrap-tpls-0.14.3.min.js"></script>
 <script src="/famban/static/js/directives/draggable.js"></script>
 <script src="/famban/static/js/directives/droppable.js"></script>
-<script src="/famban/static/js/controllers/boardController.js"></script>
-<script src="/famban/static/js/controllers/cardController.js"></script>
-<script src="/famban/static/js/controllers/userController.js"></script>
-<script src="/famban/static/js/route/routes.js"></script>
+<script src="/famban/static/js/controllers/board.controller.js"></script>
+<script src="/famban/static/js/controllers/card.controller.js"></script>
+<script src="/famban/static/js/controllers/user.controller.js"></script>
+<script src="/famban/static/js/route/config.routes.js"></script>
 </body>
 </html>

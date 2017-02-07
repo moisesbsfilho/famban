@@ -1,10 +1,10 @@
-<div class="container" ng-controller="BoardCtrl">
+<div class="container">
 	<div class="col-lg-12">
 	    <div class="page-header">
-	      <h4><span class="glyphicon glyphicon-credit-card"></span> Meus Quadros <button class="btn btn-danger btn-xs pull-right" ng-click="open()"><span class="glyphicon glyphicon-plus"></span> Quadro</button></h4>
+	      <h4><span class="glyphicon glyphicon-credit-card"></span> Meus Quadros <button class="btn btn-danger btn-xs pull-right" data-ng-click="vm.open()"><span class="glyphicon glyphicon-plus"></span> Quadro</button></h4>
 	    </div>
 	</div>
-	<div class="col-lg-4" ng-repeat="board in boards">
+	<div class="col-lg-4" data-ng-repeat="board in vm.boards">
 		<a href="#/boards/{{board.id}}" class="alert-link" style="color: #fff">
 			<div class="alert alert-dismissible board-alert">
 				<strong>{{board.title}}</strong>
@@ -22,20 +22,20 @@
 <input type="hidden"/>
 <div class="form-group">
 <label>Título</label>
-<input name="bTitle" ng-model="board.title" ng-disabled="board.id" type="name" required ng-minlength="4" class="form-control">
-<div ng-messages="form.bTitle.$error" ng-show="form.bTitle.$error.required && form.bTitle.$touched">
-  <p style="color: red;" ng-message="required">Este campo é obrigatório!</p>
+<input name="bTitle" data-ng-model="vm.board.title" data-ng-disabled="vm.board.id" type="name" required data-ng-minlength="4" class="form-control">
+<div data-ng-messages="form.bTitle.$error" data-ng-show="form.bTitle.$error.required && form.bTitle.$touched">
+  <p style="color: red;" data-ng-message="required">Este campo é obrigatório!</p>
 </div>
 </div>
 </form>
 </div>
 <div class="modal-footer">
-<div ng-if="board.id == null">
-  <button class="btn btn-info" type="button" ng-click="save()" ng-disabled="form.$invalid">Salvar</button>
-  <button class="btn btn-danger" type="button" ng-click="cancel()">Cancel</button>
+<div data-ng-if="vm.board.id == null">
+  <button class="btn btn-info" type="button" data-ng-click="vm.save()" data-ng-disabled="form.$invalid">Salvar</button>
+  <button class="btn btn-danger" type="button" data-ng-click="vm.cancel()">Cancel</button>
 </div>
-<div ng-if="board.id != null">
-  <button class="btn btn-info" type="button" ng-click="ok()">Ok</button>
+<div data-ng-if="board.id != null">
+  <button class="btn btn-info" type="button" data-ng-click="vm.ok()">Ok</button>
 </div>
 </div>
 </script>
